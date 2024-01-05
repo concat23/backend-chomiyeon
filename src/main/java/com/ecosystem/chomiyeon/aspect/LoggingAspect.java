@@ -22,4 +22,10 @@ public class LoggingAspect {
         logger.info("Creating CmyEmployee - Controller method is about to be executed.");
     }
 
+    @Before("execution(* com.ecosystem.chomiyeon.controller.CmyEmployeeController.getCmyEmployee(..))")
+    public void logBeforeFindByIdCmyEmployeeMethodExecution() {
+        logger.info("Finding by CmyEmployee ID - Controller method is about to be executed.");
+    }
+
+
 }

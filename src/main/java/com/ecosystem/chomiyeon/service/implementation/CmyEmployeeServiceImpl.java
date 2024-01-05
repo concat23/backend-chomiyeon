@@ -2,6 +2,7 @@ package com.ecosystem.chomiyeon.service.implementation;
 
 import com.ecosystem.chomiyeon.dto.CmyEmployeeDTO;
 import com.ecosystem.chomiyeon.entity.CmyEmployee;
+import com.ecosystem.chomiyeon.exception.ResourceNotFoundException;
 import com.ecosystem.chomiyeon.mapper.CmyEmployeeMapper;
 import com.ecosystem.chomiyeon.mapper.ListCmyEmployeeMapper;
 import com.ecosystem.chomiyeon.repository.ICmyEmployeeRepository;
@@ -48,5 +49,12 @@ public class CmyEmployeeServiceImpl implements ICmyEmployeeService {
         logger.info("Retrieved {} CmyEmployees from the repository.", cmyEmployeeDTOList.size());
 
         return cmyEmployeeDTOList;
+    }
+
+    @Override
+    public CmyEmployeeDTO getCmyEmployeeById(Long cmyEmployeeId) {
+        CmyEmployee cmyEmployee =this.iCmyEmployeeRepository.findById(cmyEmployeeId)
+                .orElseThrow(() -> new ResourceNotFoundException("Cmy Employee is not exist with given ID: " + cmyEmployeeId));
+        return CmyEmployeeMapper.mapToCmyEmployeeDTO(cmyEmployee);
     }
 }

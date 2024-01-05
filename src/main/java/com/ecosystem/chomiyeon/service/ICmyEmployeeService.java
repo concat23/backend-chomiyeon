@@ -7,4 +7,5 @@ import java.util.List;
 public interface ICmyEmployeeService {
     CmyEmployeeDTO createCmyEmployee(CmyEmployeeDTO cmyEmployeeDTO);
     List<CmyEmployeeDTO> listCmyEmployees();
+    CmyEmployeeDTO getCmyEmployeeById(Long cmyEmployeeId);
 }
