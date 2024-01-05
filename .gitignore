@@ -1,3 +1,6 @@
 
 .idea/encodings.xml
 *.xml
+jdk-17.0.9_macos-aarch64_bin.dmg
+.DS_Store
+target/classes/com/ecosystem/chomiyeon/ChomiyeonApplication.class
