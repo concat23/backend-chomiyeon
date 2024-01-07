@@ -1,21 +1,26 @@
 package com.ecosystem.chomiyeon.controller;
 
 import com.ecosystem.chomiyeon.dto.CmyEmployeeDTO;
+import com.ecosystem.chomiyeon.entity.CmyEmployee;
+import com.ecosystem.chomiyeon.exception.ResourceNotFoundException;
 import com.ecosystem.chomiyeon.response.CmnEmployeeResponse;
 import com.ecosystem.chomiyeon.service.ICmyEmployeeService;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Map;
 
 import static com.ecosystem.chomiyeon.constant.Route.*;
 import static org.springframework.http.HttpStatus.*;
 
+@CrossOrigin(value = "http://localhost:3000/")
 @RestController
 @AllArgsConstructor
 @RequestMapping(PATH_ORG_CMY_EMPLOYEE)
@@ -73,7 +78,7 @@ public class CmyEmployeeController {
             logger.info("Retrieved CmyEmployee: {}", cmyEmployee);
 
 
-            CmnEmployeeResponse cmnEmployeeResponse = new CmnEmployeeResponse(cmyEmployee, getUri(id));
+            CmnEmployeeResponse cmnEmployeeResponse = new CmnEmployeeResponse(cmyEmployee, getUri(id,PATH_DETAIL_CMY_EMPLOYEE));
             return new ResponseEntity<>(cmnEmployeeResponse, OK);
         } else {
             logger.warn("CmyEmployee with ID {} not found", id);
@@ -92,14 +97,54 @@ public class CmyEmployeeController {
         logger.info("Received request to retrieve URI for user with ID: {}", cmyEmployeeId);
 
         // Use the getUri method to create the URI for the specified user ID
-        URI userUri = getUri(cmyEmployeeId);
+        URI userUri = getUri(cmyEmployeeId,null);
 
         logger.info("Generated URI for user with ID {}: {}", cmyEmployeeId, userUri);
         return new ResponseEntity<>(userUri, OK);
     }
 
 
-    private URI getUri(Long cmyEmployeeId) {
-        return URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path(PATH_DETAIL_CMY_EMPLOYEE +"/"+ cmyEmployeeId).toUriString());
+    /**
+     * Handles HTTP PUT requests to update a CmyEmployee with the provided ID.
+     *
+     * @param id                 The ID of the CmyEmployee to update.
+     * @param updateFields The updated information for the CmyEmployee.
+     * @return A ResponseEntity with a CmnEmployeeResponse and an HTTP status code.
+     */
+    @PutMapping(PATH_UPDATE_CMY_EMPLOYEE + "/{id}")
+    public ResponseEntity<CmnEmployeeResponse> updateCmnEmployee(@PathVariable Long id, @RequestBody Map<String, Object> updateFields) {
+        try {
+            CmyEmployeeDTO cmyEmployee = this.iCmyEmployeeService.updateCmyEmployee(id, updateFields);
+
+            if (cmyEmployee != null) {
+                URI uri = getUri(id,PATH_UPDATE_CMY_EMPLOYEE);
+                CmnEmployeeResponse cmnEmployeeResponse = new CmnEmployeeResponse( cmyEmployee, uri);
+                return ResponseEntity.ok(cmnEmployeeResponse);
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (ResourceNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        } catch (Exception e) {
+            // Log the exception for further analysis
+            logger.error("Error updating CmyEmployee with ID {}", id, e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    /**
+     * Handles HTTP DELETE requests to delete a CmyEmployee with the provided ID.
+     *
+     * @param id The ID of the CmyEmployee to be deleted.
+     * @return A ResponseEntity with a success message and an HTTP status code.
+     */
+    @DeleteMapping(PATH_DELETE_CMY_EMPLOYEE+"/{id}")
+    public ResponseEntity<String> deleteCmyEmployee(@PathVariable Long id){
+        this.iCmyEmployeeService.deleteCmyEmployee(id);
+        return ResponseEntity.ok("Cmy Employee deleted successfully !.");
+    }
+
+    private URI getUri(Long cmyEmployeeId, String featurePath) {
+        return URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path(PATH_ORG_CMY_EMPLOYEE+featurePath +"/"+ cmyEmployeeId).toUriString());
     }
 }
