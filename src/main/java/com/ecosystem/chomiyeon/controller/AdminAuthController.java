@@ -30,7 +30,7 @@ import java.net.URI;
 import java.util.Collections;
 
 @RestController
-@RequestMapping("/admin-auth")
+@RequestMapping(path="/administrator-auth")
 public class AdminAuthController {
 
     @Autowired
@@ -83,7 +83,7 @@ public class AdminAuthController {
 
         adminUser.setPassword(passwordEncoder.encode(adminUser.getPassword()));
 
-        AdminRole userRole = iAdminRoleRepository.findByName(RoleName.ROLE_USER)
+        AdminRole userRole = iAdminRoleRepository.findByName(RoleName.ROLE_ADMIN)
                 .orElseThrow(() -> new AppException("User Role not set."));
 
         adminUser.setRoles(Collections.singleton(userRole));

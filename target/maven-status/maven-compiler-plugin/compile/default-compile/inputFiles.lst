@@ -14,6 +14,7 @@
 /Users/bangvoanh/Documents/directories/backend-chomiyeon/src/main/java/com/ecosystem/chomiyeon/configuration/WebMvcConfig.java
 /Users/bangvoanh/Documents/directories/backend-chomiyeon/src/main/java/com/ecosystem/chomiyeon/entity/AdminRole.java
 /Users/bangvoanh/Documents/directories/backend-chomiyeon/src/main/java/com/ecosystem/chomiyeon/configuration/UserPrincipal.java
+/Users/bangvoanh/Documents/directories/backend-chomiyeon/src/main/java/com/ecosystem/chomiyeon/init/ApplicationStartRunner.java
 /Users/bangvoanh/Documents/directories/backend-chomiyeon/src/main/java/com/ecosystem/chomiyeon/configuration/JwtAuthenticationEntryPoint.java
 /Users/bangvoanh/Documents/directories/backend-chomiyeon/src/main/java/com/ecosystem/chomiyeon/mapper/ListCmyEmployeeMapper.java
 /Users/bangvoanh/Documents/directories/backend-chomiyeon/src/main/java/com/ecosystem/chomiyeon/repository/IAdminRoleRepository.java

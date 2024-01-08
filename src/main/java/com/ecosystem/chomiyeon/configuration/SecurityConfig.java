@@ -80,11 +80,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/**/*.css",
                         "/**/*.js")
                 .permitAll()
-                .antMatchers("/api/v1/admin-auth/**")
+                .antMatchers("/administrator-auth/**")
                 .permitAll()
-                .antMatchers("/api/v1/admin-users/check-username-availability/admin-user", "/api/v1/admin-users/check-email-availability/admin-user")
+                .antMatchers("/admin-users/check-username-availability/admin-user", "/admin-users/check-email-availability/admin-user")
                 .permitAll()
-                .antMatchers(HttpMethod.GET, "/api/v1/cmy-employees/**", "/api/v1/admin-users/**")
+                .antMatchers(HttpMethod.GET, "/cmy-employees/**", "/admin-users/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated();
