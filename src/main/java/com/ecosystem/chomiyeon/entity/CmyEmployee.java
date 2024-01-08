@@ -1,10 +1,12 @@
 package com.ecosystem.chomiyeon.entity;
 
-import jakarta.persistence.*;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import javax.persistence.*;
 
 @Getter
 @Setter
@@ -12,7 +14,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table(name="cmy_employees")
-public class CmyEmployee {
+public class CmyEmployee extends DateAudit{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
