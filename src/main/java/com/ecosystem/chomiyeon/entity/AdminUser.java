@@ -1,12 +1,12 @@
 package com.ecosystem.chomiyeon.entity;
 
 
-import org.hibernate.annotations.NaturalId;
-
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import org.hibernate.annotations.NaturalId;
+
 import java.util.HashSet;
 import java.util.Set;
 

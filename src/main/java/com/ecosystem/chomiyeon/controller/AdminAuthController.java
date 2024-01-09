@@ -11,6 +11,7 @@ import com.ecosystem.chomiyeon.payload.LoginRequest;
 import com.ecosystem.chomiyeon.payload.SignUpRequest;
 import com.ecosystem.chomiyeon.repository.IAdminRoleRepository;
 import com.ecosystem.chomiyeon.repository.IAdminUserRepository;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +26,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.validation.Valid;
 import java.net.URI;
 import java.util.Collections;
 

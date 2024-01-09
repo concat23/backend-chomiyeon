@@ -1,10 +1,11 @@
 package com.ecosystem.chomiyeon.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.LastModifiedBy;
 
-import javax.persistence.*;
 
 @MappedSuperclass
 @JsonIgnoreProperties(

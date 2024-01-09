@@ -1,9 +1,10 @@
 package com.ecosystem.chomiyeon.entity;
 
 import com.ecosystem.chomiyeon.enumaration.RoleName;
+import javax.persistence.*;
 import org.hibernate.annotations.NaturalId;
 
-import javax.persistence.*;
+
 
 @Entity
 @Table(name = "admin_roles")

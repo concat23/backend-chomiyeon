@@ -1,8 +1,9 @@
 package com.ecosystem.chomiyeon.entity;
 
+import javax.persistence.*;
 import lombok.Getter;
 
-import javax.persistence.*;
+
 
 @Getter
 @Entity
