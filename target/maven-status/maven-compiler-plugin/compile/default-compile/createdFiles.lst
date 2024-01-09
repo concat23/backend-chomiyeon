@@ -1,11 +1,14 @@
 com/ecosystem/chomiyeon/entity/CmyEmployee.class
+com/ecosystem/chomiyeon/entity/CmyPoll.class
 com/ecosystem/chomiyeon/exception/BadRequestException.class
 com/ecosystem/chomiyeon/exception/AppException.class
 com/ecosystem/chomiyeon/dto/CmyEmployeeDTO.class
+com/ecosystem/chomiyeon/entity/CmyVote.class
 com/ecosystem/chomiyeon/controller/AdminAuthController.class
 com/ecosystem/chomiyeon/mapper/CmyEmployeeMapper.class
 com/ecosystem/chomiyeon/configuration/JwtAuthenticationEntryPoint.class
 com/ecosystem/chomiyeon/configuration/CorsConfig.class
+com/ecosystem/chomiyeon/entity/CmyUser.class
 com/ecosystem/chomiyeon/exception/ResourceNotFoundException.class
 com/ecosystem/chomiyeon/entity/UserDateAudit.class
 com/ecosystem/chomiyeon/configuration/SpringSecurityAuditAwareImpl.class
@@ -17,6 +20,7 @@ com/ecosystem/chomiyeon/repository/IAdminUserRepository.class
 com/ecosystem/chomiyeon/configuration/CustomUserDetailsService.class
 com/ecosystem/chomiyeon/repository/ICmyEmployeeRepository.class
 com/ecosystem/chomiyeon/aspect/LoggingAspect.class
+com/ecosystem/chomiyeon/entity/CmyChoice.class
 com/ecosystem/chomiyeon/service/implementation/CmyEmployeeServiceImpl.class
 com/ecosystem/chomiyeon/configuration/WebMvcConfig.class
 com/ecosystem/chomiyeon/controller/CmyEmployeeController.class

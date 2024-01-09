@@ -14,7 +14,7 @@ import java.util.TimeZone;
 @EnableAspectJAutoProxy
 @EntityScan(basePackageClasses = {
 		ChomiyeonApplication.class,
-		Jsr310JpaConverters.class
+		Jsr310JpaConverters.class,
 })
 public class ChomiyeonApplication {
 
