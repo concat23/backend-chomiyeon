@@ -3,6 +3,7 @@ package com.ecosystem.chomiyeon.controller;
 import com.ecosystem.chomiyeon.configuration.JwtTokenProvider;
 import com.ecosystem.chomiyeon.entity.AdminRole;
 import com.ecosystem.chomiyeon.entity.AdminUser;
+import com.ecosystem.chomiyeon.entity.Token;
 import com.ecosystem.chomiyeon.enumaration.RoleName;
 import com.ecosystem.chomiyeon.exception.AppException;
 import com.ecosystem.chomiyeon.payload.ApiResponse;
@@ -12,12 +13,15 @@ import com.ecosystem.chomiyeon.payload.SignUpRequest;
 import com.ecosystem.chomiyeon.repository.IAdminRoleRepository;
 import com.ecosystem.chomiyeon.repository.IAdminUserRepository;
 import javax.validation.Valid;
+
+import com.ecosystem.chomiyeon.repository.IAdminUserTokenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,6 +32,10 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.Collections;
+import java.util.Date;
+import java.util.Optional;
+
+import static com.ecosystem.chomiyeon.constant.GenerateValue.ACCESS_TOKEN_EXPIRATION_TIME;
 
 @RestController
 @RequestMapping(path="/administrator-auth")
@@ -43,6 +51,9 @@ public class AdminAuthController {
     IAdminRoleRepository iAdminRoleRepository;
 
     @Autowired
+    IAdminUserTokenRepository iAdminUserTokenRepository;
+
+    @Autowired
     PasswordEncoder passwordEncoder;
 
     @Autowired
@@ -51,17 +62,47 @@ public class AdminAuthController {
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        loginRequest.getUsernameOrEmail(),
-                        loginRequest.getPassword()
-                )
-        );
+        try {
+            Authentication authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            loginRequest.getUsernameOrEmail(),
+                            loginRequest.getPassword()
+                    )
+            );
 
-        SecurityContextHolder.getContext().setAuthentication(authentication);
+            SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        String jwt = tokenProvider.generateToken(authentication);
-        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt));
+            String jwt = tokenProvider.generateToken(authentication);
+
+            if (jwt != null) {
+                // Extract AdminUser from Optional
+                Optional<AdminUser> adminUserOptional = iAdminUserRepository.findByUsernameOrEmail(loginRequest.getUsernameOrEmail(), loginRequest.getUsernameOrEmail());
+
+                if (adminUserOptional.isPresent()) {
+                    AdminUser adminUser = adminUserOptional.get();
+
+                    // Create an AdminUserToken entity
+                    Token adminUserToken = new Token();
+
+                    // Set the AdminUser associated with the token
+                    adminUserToken.setAdminUser(adminUser);
+
+                    // Set the access token
+                    adminUserToken.setAccessToken(jwt);
+
+                    // Set the token expiration dates (adjust based on your requirements)
+                    adminUserToken.setAccessTokenExpiration(new Date(System.currentTimeMillis() + ACCESS_TOKEN_EXPIRATION_TIME));
+
+                    // Save the AdminUserToken to the database
+                    iAdminUserTokenRepository.save(adminUserToken);
+                }
+            }
+
+            return ResponseEntity.ok(new JwtAuthenticationResponse(jwt));
+        } catch (AuthenticationException e) {
+            // Handle authentication failure
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
     }
 
 
