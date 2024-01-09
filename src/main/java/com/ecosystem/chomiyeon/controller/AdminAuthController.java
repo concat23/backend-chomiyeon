@@ -35,7 +35,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.Optional;
 
-import static com.ecosystem.chomiyeon.constant.GenerateValue.ACCESS_TOKEN_EXPIRATION_TIME;
+import static com.ecosystem.chomiyeon.constant.AppConstants.ACCESS_TOKEN_EXPIRATION_TIME;
 
 @RestController
 @RequestMapping(path="/administrator-auth")

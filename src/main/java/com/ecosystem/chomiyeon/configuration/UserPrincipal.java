@@ -60,6 +60,10 @@ public class UserPrincipal implements UserDetails {
         return id;
     }
 
+    public String getName() {
+        return name;
+    }
+
     @Override
     public String getPassword() {
         return password;

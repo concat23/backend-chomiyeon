@@ -12,6 +12,7 @@ public class CmyUser extends DateAudit{
     private Long id;
     private String firstName;
     private String lastName;
+    private String username;
     private String email;
 
     public void setId(Long id) {
