@@ -46,7 +46,7 @@ public class CmyPollServiceImpl implements ICmyPollService {
     private static final Logger logger = LoggerFactory.getLogger(CmyPollServiceImpl.class);
 
     @Override
-    public PagedResponse<CmyPollResponse> getAllCmyPolls(CmyUser currentUser, int page, int size) {
+    public PagedResponse<CmyPollResponse> getAllCmyPolls(AdminUser currentUser, int page, int size) {
         try {
             logger.info("Fetching all polls for user: {}, page: {}, size: {}", currentUser.getUsername(), page, size);
 
@@ -84,7 +84,7 @@ public class CmyPollServiceImpl implements ICmyPollService {
     }
 
     @Override
-    public PagedResponse<CmyPollResponse> getCmyPollsCreatedBy(String username, CmyUser currentUser, int page, int size) {
+    public PagedResponse<CmyPollResponse> getCmyPollsCreatedBy(String username, AdminUser currentUser, int page, int size) {
         try {
             logger.info("Fetching polls created by user: {}, page: {}, size: {}", username, page, size);
 
@@ -124,7 +124,7 @@ public class CmyPollServiceImpl implements ICmyPollService {
     }
 
     @Override
-    public PagedResponse<CmyPollResponse> getCmyPollsVotedBy(String username, CmyUser currentUser, int page, int size) {
+    public PagedResponse<CmyPollResponse> getCmyPollsVotedBy(String username, AdminUser currentUser, int page, int size) {
         try {
             logger.info("Fetching polls voted by user: {}, page: {}, size: {}", username, page, size);
 
@@ -187,7 +187,7 @@ public class CmyPollServiceImpl implements ICmyPollService {
     }
 
     @Override
-    public CmyPollResponse getCmyPollById(Long pollId, CmyUser currentUser) {
+    public CmyPollResponse getCmyPollById(Long pollId, AdminUser currentUser) {
         CmyPoll cmyPoll = iCmyPollRepository.findById(pollId).orElseThrow(
                 () -> new ResourceNotFoundException("Cmy Poll", "id", pollId));
 
@@ -212,7 +212,7 @@ public class CmyPollServiceImpl implements ICmyPollService {
     }
 
     @Override
-    public CmyPollResponse castVoteAndGetUpdatedPoll(Long pollId, CmyVoteRequest cmyVoteRequest, CmyUser currentUser) {
+    public CmyPollResponse castVoteAndGetUpdatedPoll(Long pollId, CmyVoteRequest cmyVoteRequest, AdminUser currentUser) {
         CmyPoll poll = this.iCmyPollRepository.findById(pollId)
                 .orElseThrow(() -> new ResourceNotFoundException("Poll", "id", pollId));
 
@@ -275,7 +275,7 @@ public class CmyPollServiceImpl implements ICmyPollService {
         return choiceVotesMap;
     }
 
-    private Map<Long, Long> getCmyPollUserVoteMap(CmyUser currentUser, List<Long> pollIds) {
+    private Map<Long, Long> getCmyPollUserVoteMap(AdminUser currentUser, List<Long> pollIds) {
         // Retrieve Votes done by the logged in user to the given pollIds
         Map<Long, Long> pollUserVoteMap = null;
         if(currentUser != null) {

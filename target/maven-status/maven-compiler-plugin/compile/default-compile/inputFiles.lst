@@ -33,14 +33,17 @@
 /Users/bangvoanh/Documents/directories/backend-chomiyeon/src/main/java/com/ecosystem/chomiyeon/payload/CmyChoiceRequest.java
 /Users/bangvoanh/Documents/directories/backend-chomiyeon/src/main/java/com/ecosystem/chomiyeon/configuration/JwtTokenProvider.java
 /Users/bangvoanh/Documents/directories/backend-chomiyeon/src/main/java/com/ecosystem/chomiyeon/payload/ApiResponse.java
+/Users/bangvoanh/Documents/directories/backend-chomiyeon/src/main/java/com/ecosystem/chomiyeon/configuration/UsernameRequired.java
 /Users/bangvoanh/Documents/directories/backend-chomiyeon/src/main/java/com/ecosystem/chomiyeon/configuration/CorsConfig.java
 /Users/bangvoanh/Documents/directories/backend-chomiyeon/src/main/java/com/ecosystem/chomiyeon/entity/DateAudit.java
 /Users/bangvoanh/Documents/directories/backend-chomiyeon/src/main/java/com/ecosystem/chomiyeon/payload/CmyPollResponse.java
 /Users/bangvoanh/Documents/directories/backend-chomiyeon/src/main/java/com/ecosystem/chomiyeon/aspect/LoggingAspect.java
 /Users/bangvoanh/Documents/directories/backend-chomiyeon/src/main/java/com/ecosystem/chomiyeon/repository/ICmyUserRepository.java
+/Users/bangvoanh/Documents/directories/backend-chomiyeon/src/main/java/com/ecosystem/chomiyeon/configuration/EmailRequired.java
 /Users/bangvoanh/Documents/directories/backend-chomiyeon/src/main/java/com/ecosystem/chomiyeon/payload/CmyUserProfile.java
 /Users/bangvoanh/Documents/directories/backend-chomiyeon/src/main/java/com/ecosystem/chomiyeon/entity/Token.java
 /Users/bangvoanh/Documents/directories/backend-chomiyeon/src/main/java/com/ecosystem/chomiyeon/configuration/JwtAuthenticationFilter.java
+/Users/bangvoanh/Documents/directories/backend-chomiyeon/src/main/java/com/ecosystem/chomiyeon/configuration/UsernameRequiredHandlerMethodArgumentResolver.java
 /Users/bangvoanh/Documents/directories/backend-chomiyeon/src/main/java/com/ecosystem/chomiyeon/repository/ICmyPollRepository.java
 /Users/bangvoanh/Documents/directories/backend-chomiyeon/src/main/java/com/ecosystem/chomiyeon/constant/Route.java
 /Users/bangvoanh/Documents/directories/backend-chomiyeon/src/main/java/com/ecosystem/chomiyeon/entity/CmyVote.java

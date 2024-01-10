@@ -17,6 +17,7 @@ com/ecosystem/chomiyeon/constant/AppConstants.class
 com/ecosystem/chomiyeon/configuration/SpringSecurityAuditAwareImpl.class
 com/ecosystem/chomiyeon/entity/AdminUser.class
 com/ecosystem/chomiyeon/payload/SignUpRequest.class
+com/ecosystem/chomiyeon/configuration/EmailRequired.class
 com/ecosystem/chomiyeon/controller/AdminUserController.class
 com/ecosystem/chomiyeon/repository/IAdminUserRepository.class
 com/ecosystem/chomiyeon/repository/ICmyEmployeeRepository.class
@@ -31,8 +32,10 @@ com/ecosystem/chomiyeon/response/CmnEmployeeResponse.class
 com/ecosystem/chomiyeon/payload/CmyVoteRequest.class
 com/ecosystem/chomiyeon/service/ICmyEmployeeService.class
 com/ecosystem/chomiyeon/configuration/JwtAuthenticationFilter.class
+com/ecosystem/chomiyeon/configuration/UsernameRequired.class
 com/ecosystem/chomiyeon/payload/LoginRequest.class
 com/ecosystem/chomiyeon/configuration/UserPrincipal.class
+com/ecosystem/chomiyeon/configuration/UsernameRequiredHandlerMethodArgumentResolver.class
 com/ecosystem/chomiyeon/ChomiyeonApplication.class
 com/ecosystem/chomiyeon/entity/CmyPoll.class
 com/ecosystem/chomiyeon/entity/CmyVote.class
